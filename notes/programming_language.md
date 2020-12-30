@@ -1,0 +1,5 @@
+# Choosing a programming language
+
+For your interviews, you want to code in a language that you are confortable with but also you need to choose one that the interviewer will understand. In my opinion, it's a plus if you also choose a programming language that has a rich standard library with a lot of low level elements to work with because you can discuss all those implementation details with your interviewer, for example why using a `TreeSet` vs a `HashSet`. Besides having something to talk about, a rich standard library also gives you the power to solve more problems, for example `Java` has a `PriorityQueue` class which can help you solve the top-k elements problem easily but `Ruby` does not, so you would have to implement it your own while practising (or look for an implementation). Also, following the `Set` example, if you use the `Set` class in `Ruby` you would have to read the documentation to know about it's details.
+
+For those reasons `Java` is the language of my choice. Virtually everybody knows or has used the language at least once (or a language with a very similar syntax) and it has a huge standard library.
