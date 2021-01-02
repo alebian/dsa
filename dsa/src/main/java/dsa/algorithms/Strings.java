@@ -19,21 +19,15 @@ public class Strings {
 			sHash.add(c);
 		}
 
-		for (Character c : t.substring(0, s.length()).toCharArray()) {
-			tHash.add(c);
-		}
-
-		// Test this case to avoid generating the tHash inside the loop, which makes the code harder to understand
-		if (sHash.equals(tHash)) {
-			return 0;
-		}
-
-		for (int i = s.length(); i < t.length(); i++) {
-			tHash.remove(t.charAt(i - s.length()));
+		for (int i = 0; i < t.length(); i++) {
 			tHash.add(t.charAt(i));
 
-			if (sHash.equals(tHash)) {
-				return i - s.length() + 1;
+			if (tHash.size() == sHash.size()) {
+				int substringStartIdx = i - s.length() + 1;
+				if (sHash.equals(tHash)) {
+					return substringStartIdx;
+				}
+				tHash.remove(t.charAt(substringStartIdx));
 			}
 		}
 

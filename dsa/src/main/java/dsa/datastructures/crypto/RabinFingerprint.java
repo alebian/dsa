@@ -13,6 +13,11 @@ public class RabinFingerprint implements RollingHash<Character> {
 	}
 
 	@Override
+	public int size() {
+		return size;
+	}
+
+	@Override
 	public BigInteger hash() {
 		return hash;
 	}

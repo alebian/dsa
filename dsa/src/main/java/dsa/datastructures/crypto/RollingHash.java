@@ -8,4 +8,6 @@ public interface RollingHash<T> {
 	void add(T element);
 
 	void remove(T element);
+
+	int size();
 }

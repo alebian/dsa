@@ -7,9 +7,16 @@ import java.util.Optional;
 
 public class RollingHashMap<T> implements RollingHash<T> {
 	private final Map<T, Integer> map;
+	private int size;
 
 	public RollingHashMap() {
 		this.map = new HashMap<>();
+		this.size = 0;
+	}
+
+	@Override
+	public int size() {
+		return size;
 	}
 
 	@Override
@@ -20,6 +27,7 @@ public class RollingHashMap<T> implements RollingHash<T> {
 	@Override
 	public void add(final T element) {
 		map.put(element, Optional.ofNullable(map.get(element)).orElse(0) + 1);
+		size++;
 	}
 
 	@Override
@@ -31,6 +39,7 @@ public class RollingHashMap<T> implements RollingHash<T> {
 				map.put(element, map.get(element) - 1);
 			}
 		}
+		size--;
 	}
 
 	@Override
