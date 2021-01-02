@@ -4,6 +4,7 @@ package dsa.datastructures.arrays;
  * Mutable array with automatic resizing
  */
 public class IntegerVector implements Vector<Integer> {
+	private static final int CAPACITY = 16;
 	private int capacity;
 	private int insertPosition;
 	private Integer[] elements;
@@ -16,7 +17,7 @@ public class IntegerVector implements Vector<Integer> {
 	}
 
 	IntegerVector() {
-		this(16);
+		this(CAPACITY);
 	}
 
 	@Override
@@ -74,7 +75,11 @@ public class IntegerVector implements Vector<Integer> {
 		if (size() == 0) {
 			return null;
 		}
-		return elements[--insertPosition];
+
+		final Integer result = elements[--insertPosition];
+		shrink();
+
+		return result;
 	}
 
 	@Override
@@ -87,6 +92,8 @@ public class IntegerVector implements Vector<Integer> {
 		for (int i = index; i < size(); i++) {
 			elements[i] = elements[i + 1];
 		}
+
+		shrink();
 	}
 
 	@Override
@@ -106,6 +113,13 @@ public class IntegerVector implements Vector<Integer> {
 			}
 		}
 		return -1;
+	}
+
+	private void shrink() {
+		// If we shrink with a load factor of 2 we get logN amortized time instead of constant amortized time
+		if (capacity > CAPACITY && capacity / size() >= 4) {
+			resize(capacity / 2);
+		}
 	}
 
 	private void resize(final int newCapacity) {

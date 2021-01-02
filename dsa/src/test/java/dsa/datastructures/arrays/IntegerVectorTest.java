@@ -118,16 +118,14 @@ public class IntegerVectorTest {
 
 		for (int i = 31; i >= 0; i--) {
 			assertEquals(i, newVector.pop());
-			assertEquals(32, newVector.capacity());
 			assertEquals(i, newVector.size());
 		}
+		assertEquals(16, newVector.capacity());
 
 		assertNull(newVector.pop());
-		assertEquals(32, newVector.capacity());
 		assertEquals(0, newVector.size());
 
 		assertNull(newVector.pop());
-		assertEquals(32, newVector.capacity());
 		assertEquals(0, newVector.size());
 	}
 
